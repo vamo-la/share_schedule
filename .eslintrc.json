@@ -21,13 +21,21 @@
         "prettier"
       ],
     "rules": {
-        "prettier/prettier": "error",
-        "import/order": [
-            "warn",
-            {
-                "alphabetize": { "order": "asc" },
-                "newlines-between": "always"
-            }
+        "linebreak-style": [
+            "error",
+            "unix"
+        ],
+        "quotes": [
+            "error",
+            "single"
+        ],
+        "semi": [
+            "error",
+            "always"
+        ],
+        "semi-spacing": [
+            "error", 
+            {"after": true, "before": false}
         ]
     }
 }
