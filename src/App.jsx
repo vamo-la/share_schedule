@@ -1,22 +1,45 @@
-import React from 'react';
+import React, { Component } from 'react';
+import { Router, Route, Switch } from 'react-router-dom';
+import { connect } from 'react-redux';
+import firebase from './config/firebase';
 
-import logo from './logo.svg';
-import './App.css';
+import { loggined, logouted } from './actions';
+import history from './history';
+import LandingPage from './components/LandingPage';
+import LoginedPage from './components/LoginedPage';
+import NavBar from './components/NavBar';
+import Auth from './Auth';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a className="App-link" href="https://reactjs.org" target="_blank" rel="noopener noreferrer">
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component {
+  componentDidMount() {
+    firebase.auth().onAuthStateChanged((user) => {
+      if (user) {
+        // ログイン処理
+        this.props.loggined();
+        console.log('loginしました');
+      } else {
+        // ログアウト処理
+        this.props.logouted();
+      }
+    });
+  }
+  render() {
+    return (
+      <Router history={history}>
+        <NavBar />
+        <Switch>
+          <Route path="/" exact component={LandingPage} />
+          <Auth>
+            <Route path="/logined" exact component={LoginedPage} />
+          </Auth>
+        </Switch>
+      </Router>
+    );
+  }
 }
 
-export default App;
+const mapStateToProps = (state) => {
+  return { isLoggedIn: state.auth.isLoggedIn };
+};
+
+export default connect(mapStateToProps, { loggined, logouted })(App);

@@ -1,19 +1,21 @@
 {
+    "parser": "babel-eslint",
     "env": {
         "browser": true,
-        "es6": true
+        "es6": true,
+        "node": true
     },
     "extends": [
         "eslint:recommended",
         "plugin:react/recommended",
-        "plugin:import/warnings",
+        "plugin:import/errors",
         "prettier"
     ],
     "parserOptions": {
         "ecmaFeatures": {
             "jsx": true
         },
-        "ecmaVersion": 12,
+        "ecmaVersion": 2018,
         "sourceType": "module"
     },
     "plugins": [
@@ -21,6 +23,9 @@
         "prettier"
       ],
     "rules": {
+        "import/no-unresolved": "off",
+        "no-dupe-else-if": "off",
+        "no-setter-return": "off",
         "linebreak-style": [
             "error",
             "unix"
