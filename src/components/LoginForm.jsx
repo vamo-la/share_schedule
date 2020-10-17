@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { /*FacebookLoginButton, TwitterLoginButton,*/ GoogleLoginButton } from 'react-social-login-buttons';
-import { emailChanged, passwordChanged, loginUser, signUpUser, loggined } from '../actions/auth.js';
+import { emailChanged, passwordChanged, loginUser, signUpUser, logined } from '../actions/auth.js';
 import firebase from '../config/firebase';
 
 class LoginForm extends Component {
@@ -117,15 +117,15 @@ class LoginForm extends Component {
 
 // prop-typesの定義
 LoginForm.propTypes = {
-  error: PropTypes.object,
-  loading: PropTypes.object,
+  error: PropTypes.string,
+  loading: PropTypes.bool,
   email: PropTypes.string,
-  emailChanged: PropTypes.string,
+  emailChanged: PropTypes.func,
   password: PropTypes.string,
-  passwordChanged: PropTypes.string,
+  passwordChanged: PropTypes.func,
   formText: PropTypes.string,
-  loginUser: PropTypes.array,
-  signUpUser: PropTypes.array,
+  loginUser: PropTypes.func,
+  signUpUser: PropTypes.func,
 };
 
 // Reduxと繋げる
@@ -142,6 +142,6 @@ export default connect(mapStateToProps, {
   emailChanged,
   passwordChanged,
   loginUser,
-  loggined,
+  logined,
   signUpUser,
 })(LoginForm);

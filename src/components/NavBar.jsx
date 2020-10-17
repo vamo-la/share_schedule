@@ -151,15 +151,15 @@ function NavBar(props) {
   );
 }
 
-// prop-typesの定義
-NavBar.propTypes = {
-  isLoggedIn: PropTypes.object,
-};
-
 const mapStateToProps = (state) => {
   return {
     isLoggedIn: state.auth.isLoggedIn,
   };
+};
+
+// prop-typesの定義
+NavBar.propTypes = {
+  isLoggedIn: PropTypes.bool,
 };
 
 export default connect(mapStateToProps)(NavBar);

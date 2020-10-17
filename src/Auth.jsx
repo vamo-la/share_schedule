@@ -1,6 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 
 class Auth extends Component {
   renderContent = () => {
@@ -19,6 +20,12 @@ class Auth extends Component {
 
 const mapStateToProps = (state) => {
   return { isLoggedIn: state.auth.isLoggedIn };
+};
+
+// prop-typesの定義
+Auth.propTypes = {
+  isLoggedIn: PropTypes.object,
+  children: PropTypes.object,
 };
 
 export default connect(mapStateToProps)(Auth);
