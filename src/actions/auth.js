@@ -7,7 +7,7 @@ import {
   LOGIN_USER_FAIL,
   LOGIN_USER,
   SIGN_UP_USER,
-} from './AuthStatus';
+} from '../utils/types';
 
 ////////////////////emailとpasswordでサインアップ、ログイン用/////////////////////////////
 export const emailChanged = (text) => {

@@ -4,7 +4,7 @@ import TextField from '@material-ui/core/TextField';
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { /*FacebookLoginButton, TwitterLoginButton,*/ GoogleLoginButton } from 'react-social-login-buttons';
+import { GoogleLoginButton } from 'react-social-login-buttons';
 import { emailChanged, passwordChanged, loginUser, signUpUser, logined } from '../actions/auth.js';
 import firebase from '../config/firebase';
 
@@ -46,12 +46,6 @@ class LoginForm extends Component {
     firebase.auth().signInWithRedirect(provider);
   };
 
-  twitterLogin = () => {
-    // ツイッターログイン処理
-    const provider = new firebase.auth.TwitterAuthProvider();
-    firebase.auth().signInWithRedirect(provider);
-  };
-
   renderErrorMessage = () => {
     // エラーメッセージ
     const { error } = this.props;
@@ -74,12 +68,6 @@ class LoginForm extends Component {
         <GoogleLoginButton onClick={this.googleLogin} align="center" iconSize={'20'} size={'40'}>
           <span style={{ fontSize: 16 }}>Googleで{this.props.formText}</span>
         </GoogleLoginButton>
-        {/* <TwitterLoginButton onClick={this.twitterLogin} align="center" iconSize={'20'} size={'40'}>
-          <span style={{ fontSize: 16 }}>Twitterで{this.props.formText}</span>
-        </TwitterLoginButton>
-        <FacebookLoginButton onClick={this.facebookLogin} align="center" iconSize={'20'} size={'40'}>
-          <span style={{ fontSize: 16 }}>Facebookで{this.props.formText}</span>
-        </FacebookLoginButton> */}
         <div style={{ textAlign: 'center', marginTop: 20 }}>または</div>
         <form style={{ textAlign: 'center' }} noValidate autoComplete="off">
           <div>

@@ -5,7 +5,7 @@ import {
   LOGIN_USER_FAIL,
   LOGIN_USER,
   SIGN_UP_USER,
-} from '../actions/AuthStatus';
+} from '../utils/types';
 
 const INITIAL_STATE = {
   email: '',

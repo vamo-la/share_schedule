@@ -1,0 +1,31 @@
+/* カレンダーレイアウト */
+.react-calendar__navigation__label {
+  background-color: white;
+}
+
+// .react-calendar__month-view__days__day {
+//   text-align: left;
+//   vertical-align: top;
+//   height: 10vw;
+// }
+.react-calendar__tile {
+  text-align: left;
+  vertical-align: text-top;
+  display: table-cell;
+  height: 13vw;
+  width: 20vw;
+}
+
+@function get_vw($size, $viewport: 375) {
+  $rate: 100 / $viewport;
+  @return $rate * $size * 1vw;
+}
+
+@mixin fz_vw($font_size: 10) {
+  font-size: $font_size * 1px;
+  font-size: get_vw($font_size);
+}
+
+.vw {
+  @include fz_vw(16);
+}

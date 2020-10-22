@@ -24,7 +24,7 @@ const mapStateToProps = (state) => {
 
 // prop-typesの定義
 Auth.propTypes = {
-  isLoggedIn: PropTypes.object,
+  isLoggedIn: PropTypes.bool,
   children: PropTypes.object,
 };
 
