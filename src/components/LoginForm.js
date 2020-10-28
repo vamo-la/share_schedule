@@ -48,7 +48,7 @@ class LoginForm extends Component {
 
   renderErrorMessage = () => {
     // エラーメッセージ
-    const { error } = this.props;
+    const error = this.props.error;
     if (error === 'auth/user-not-found') {
       return 'ユーザー情報が登録されていません。';
     } else if (error === 'auth/wrong-password') {
@@ -74,6 +74,7 @@ class LoginForm extends Component {
             <TextField
               id="standard-email"
               label="メールアドレス"
+              type="email"
               value={this.props.email}
               onChange={this.onEmailChange}
               margin="normal"
@@ -87,6 +88,12 @@ class LoginForm extends Component {
               value={this.props.password}
               onChange={this.onPasswordChane}
               margin="normal"
+              // Enter押下でログイン処理
+              onKeyPress={(ev) => {
+                if (ev.key === 'Enter') {
+                  this.onButtonPress();
+                }
+              }}
             />
           </div>
           <div style={{ color: '#fa755a' }}>{this.renderErrorMessage()}</div>

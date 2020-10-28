@@ -1,31 +1,36 @@
-import React, { Component, Fragment } from 'react';
+import React, { Fragment } from 'react';
 import { Redirect } from 'react-router-dom';
-import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
+import { useSelector } from 'react-redux';
+import history from './history';
 
-class Auth extends Component {
-  renderContent = () => {
-    if (this.props.isLoggedIn) {
+function Auth() {
+  const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
+  const isSignUp = useSelector((state) => state.auth.isSignUp);
+
+  // プロフィール登録画面へ遷移
+  const handleToProfileRegistPage = () => {
+    history.push('/profile-regist');
+  };
+
+  // ログイン後画面へ遷移
+  const handleToLoggedInPage = () => {
+    history.push('/loggedin');
+  };
+
+  const renderContent = () => {
+    if (isSignUp) {
+      // サインアップの場合はプロフィール登録へと遷移
+      return handleToProfileRegistPage;
+    } else if (isLoggedIn) {
       // ログインしていたら子コンポーネントを表示する
-      return this.props.children;
+      return handleToLoggedInPage;
     } else {
       // ログインしてないならリダイレクト
       return <Redirect to={'/'} />;
     }
   };
-  render() {
-    return <Fragment>{this.renderContent()}</Fragment>;
-  }
+
+  return <Fragment>{renderContent()}</Fragment>;
 }
 
-const mapStateToProps = (state) => {
-  return { isLoggedIn: state.auth.isLoggedIn };
-};
-
-// prop-typesの定義
-Auth.propTypes = {
-  isLoggedIn: PropTypes.bool,
-  children: PropTypes.object,
-};
-
-export default connect(mapStateToProps)(Auth);
+export default Auth;

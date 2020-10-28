@@ -3,14 +3,7 @@ import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
 import '../style.scss';
 
-// ログイン後のページ
-// class LoginedPage extends Component {
-//   render() {
-//     return <Calendar locale="ja-JP" calendarType="US" value={new Date()} />;
-//   }
-// }
-
-function LoginedPage() {
+function LoggedInPage() {
   const [value, onChange] = useState(new Date());
   return (
     <div>
@@ -19,7 +12,14 @@ function LoginedPage() {
   );
 }
 
-export default LoginedPage;
+export default LoggedInPage;
+
+// ログイン後のページ
+// class LoginedPage extends Component {
+//   render() {
+//     return <Calendar locale="ja-JP" calendarType="US" value={new Date()} />;
+//   }
+// }
 
 // import React, { useState } from 'react';
 // import Calendar from 'react-calendar';

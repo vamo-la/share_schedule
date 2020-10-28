@@ -5,7 +5,7 @@ import { Redirect } from 'react-router-dom';
 function LandingPage() {
   const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
   if (isLoggedIn) {
-    return <Redirect to={'/logined'} />;
+    return <Redirect to={'/loggedin'} />;
   } else {
     return <div style={{ position: 'absolute', top: 150, left: 150 }}>ここにページの概要を記入</div>;
   }

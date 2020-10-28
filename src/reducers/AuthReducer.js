@@ -5,6 +5,7 @@ import {
   LOGIN_USER_FAIL,
   LOGIN_USER,
   SIGN_UP_USER,
+  SIGN_UP_USER_SUCCESS,
 } from '../utils/types';
 
 const INITIAL_STATE = {
@@ -16,6 +17,8 @@ const INITIAL_STATE = {
   loading: false,
   // ログインしているか
   isLoggedIn: null,
+  // サインイン時か
+  isSignUp: null,
 };
 
 export default (state = INITIAL_STATE, action) => {
@@ -46,6 +49,16 @@ export default (state = INITIAL_STATE, action) => {
         loading: true,
         error: '',
       };
+    case SIGN_UP_USER_SUCCESS:
+      // サインアップ処理開始、ロード中にする
+      return {
+        ...state,
+        loading: false,
+        password: '',
+        user: action.payload,
+        isLoggedIn: true,
+        isSignUp: true,
+      };
     case LOGIN_USER_SUCCESS:
       // ログイン成功、ロード修了、ユーザー情報取得、ログイン状態にする
       return {
@@ -54,6 +67,7 @@ export default (state = INITIAL_STATE, action) => {
         password: '',
         user: action.payload,
         isLoggedIn: true,
+        isSignUp: false,
       };
     case LOGIN_USER_FAIL:
       // ログイン失敗、ロード修了、ログアウト状態にする
@@ -63,6 +77,7 @@ export default (state = INITIAL_STATE, action) => {
         loading: false,
         password: '',
         isLoggedIn: false,
+        isSignUp: false,
       };
     default:
       return state;

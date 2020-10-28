@@ -6,9 +6,9 @@ import firebase from './config/firebase';
 import { logined, logouted } from './actions';
 import history from './history';
 import LandingPage from './components/LandingPage';
-import LoginedPage from './components/LoginedPage';
+import LoggedInPage from './components/LoggedInPage';
 import NavBar from './components/NavBar';
-import Auth from './Auth';
+import ProfileRegistPage from './components/ProfileRegistPage';
 import PropTypes from 'prop-types';
 
 class App extends Component {
@@ -30,9 +30,8 @@ class App extends Component {
         <NavBar />
         <Switch>
           <Route path="/" exact component={LandingPage} />
-          <Auth>
-            <Route path="/logined" exact component={LoginedPage} />
-          </Auth>
+          <Route path="/profile-regist" exact component={ProfileRegistPage} />
+          <Route path="/loggedin" component={LoggedInPage} />
         </Switch>
       </Router>
     );
@@ -40,7 +39,9 @@ class App extends Component {
 }
 
 const mapStateToProps = (state) => {
-  return { isLoggedIn: state.auth.isLoggedIn };
+  return {
+    isLoggedIn: state.auth.isLoggedIn,
+  };
 };
 
 // prop-typesの定義

@@ -1,4 +1,5 @@
 import firebase from '../config/firebase';
+import history from '../history';
 
 import {
   EMAIL_CHANGED,
@@ -7,6 +8,7 @@ import {
   LOGIN_USER_FAIL,
   LOGIN_USER,
   SIGN_UP_USER,
+  SIGN_UP_USER_SUCCESS,
 } from '../utils/types';
 
 ////////////////////emailとpasswordでサインアップ、ログイン用/////////////////////////////
@@ -42,6 +44,7 @@ export const loginUser = ({ email, password }) => async (dispatch) => {
         type: LOGIN_USER_SUCCESS,
         payload: user,
       });
+      history.push('/loggedin');
     })
     .catch((error) => {
       console.log(error);
@@ -66,9 +69,10 @@ export const signUpUser = ({ email, password }) => async (dispatch) => {
     .then((user) => {
       // サインアップ成功、ユーザー情報を送る
       dispatch({
-        type: LOGIN_USER_SUCCESS,
+        type: SIGN_UP_USER_SUCCESS,
         payload: user,
       });
+      history.push('/profile-regist');
     })
     .catch((error) => {
       console.log(error);
